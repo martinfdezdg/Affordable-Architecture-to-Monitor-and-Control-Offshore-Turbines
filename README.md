@@ -1,1 +1,45 @@
 # Affordable-Architecture-to-Monitor-and-Control-Offshore-Turbines
+
+## Índice
+- Resumen
+- Agradecimientos  
+- Introducción  
+  - Preliminares  
+    - Motivación  
+    - Objetivos  
+    - Asignaturas relacionadas  
+    - Plan de trabajo  
+    - Estructura de la memoria  
+  - Turbinas eólicas
+    - Modelo
+    - Esquema de control
+    - Problemática
+  - Gemelo Digital
+    - Definición
+    - Origen
+    - Tipos
+    - Aplicación y beneficios
+- Desarrollo del sistema
+  - Aprendizaje y dominio de las tecnologías
+    - Desarrollo de un lazo de control básico
+    - Monitorización y almacenamiento en un servidor
+    - Control y monitorización con multihilo
+    - Aportaciones
+  - Interfaz de control del Gemelo Digital
+    - Herramientas
+    - Implementación del modelo
+    - Implementación de la vista
+    - Implementación del controlador
+    - Simulador
+    - Aportaciones
+  - Software integrado en el prototipo
+    - Modelo del prototipo de turbina
+    - Implementación
+    - Aportaciones
+- Análisis y discusión de resultados
+  - Casos de uso
+    - Ciclo de funcionamiento automático completo
+    - Funcionamiento manual
+    - Aportaciones
+  - Conclusiones y trabajos futuros
+- Bibliografía
