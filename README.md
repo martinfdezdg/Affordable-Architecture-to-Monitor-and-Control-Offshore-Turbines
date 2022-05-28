@@ -1,4 +1,12 @@
-# Affordable-Architecture-to-Monitor-and-Control-Offshore-Turbines
+# Affordable-Architecture-to-Monitor-and-Control-Offshore-Turbines  
+
+<br>
+<p align=center valign="center">
+  <img alt="Prototipo de turbina eólica flotante" src="Documentation/Images/prototype.png" width="25%" align="middle">
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <img alt="Gemelo Digital de turbina eólica flotante" src="Documentation/Images/digital_twin.png" width="50%" align="middle">
+</p>
+</br>
 
 ## Índice
 - Resumen
