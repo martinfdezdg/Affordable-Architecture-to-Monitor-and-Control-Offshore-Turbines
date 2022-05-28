@@ -1,4 +1,4 @@
-# Affordable-Architecture-to-Monitor-and-Control-Offshore-Turbines  
+# Arquitectura-asequible-para-monitorizar-y-controlar-turbinas-offshore
 
 <br>
 <p align=center valign="center">
