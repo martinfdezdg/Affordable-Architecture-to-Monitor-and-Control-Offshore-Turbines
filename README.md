@@ -1,4 +1,13 @@
-# Arquitectura-asequible-para-monitorizar-y-controlar-turbinas-offshore
+# Arquitectura-asequible-para-monitorizar-y-controlar-turbinas-offshore  
+
+## Resumen
+La energía eólica marina juega un papel clave en la transición ecológica. Las turbinas eólicas flotantes requieren de nuevos y más complejos algoritmos de control y métodos de comunicación. Este proyecto propone un sistema asequible de monitorización y control de diferentes prototipos de turbina, reales o simulados.  
+
+En primer lugar, se analizan el modelado y las técnicas de control de las turbinas eólicas, así como la problemática de su implantación en alta mar. También se introduce el concepto de Gemelo Digital junto con sus utilidades en la materia.  
+La aplicación de un lazo de control básico y la monitorización del estado del sistema en tiempo real sobre un prototipo de baja fidelidad evidencia la necesidad de más de un hilo de ejecución. Se solventa con el uso de un microcontrolador de varios núcleos, colas de comunicación entre hilos y del formato JSON para la encapsulación y subida de datos al servidor de ThingSpeak.  
+La interfaz de control del sistema se materializa en un Gemelo Digital. Su desarrollo se lleva a cabo en el entorno MATLAB con el patrón de diseño Modelo-Vista-Controlador, lo que facilita su uso para ingenieros de otras ramas y favorece su escalabilidad. El Gemelo Digital permite monitorizar en tiempo real las turbinas de una granja eólica, formada particularmente por un prototipo físico y por una simulación, así como enviarle comandos, ajustando de forma remota el ángulo de las palas, la carga eléctrica o ejecutando paradas de emergencia.  
+El software integrado con ejecución multihilo se encarga del control de los componentes del prototipo de turbina escalado y es capaz de comunicarse bidireccionalmente con el Gemelo Digital. Resulta de una fusión con algoritmos de control PID modelados por miembros de otras disciplinas del grupo de trabajo.  
+Por último, se muestran diferentes casos de uso del funcionamiento del prototipo de turbina eólica y del simulador a través de la interfaz del Gemelo Digital.
 
 <br>
 <p align=center valign="center">
