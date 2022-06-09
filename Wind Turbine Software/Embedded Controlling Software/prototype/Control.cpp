@@ -3,7 +3,6 @@
 */
 
 #include "Arduino.h"
-
 #include "Control.h"
 
 Control::Control() { }
@@ -29,7 +28,7 @@ Phase Control::nextPhase(Command const &command, Status const &status) {
   else if (status.rpm < OPT_RPM - ERR_RPM || OPT_RPM + ERR_RPM < status.rpm && status.rpm < MAX_RPM) {
     return Phase::LOAD_CONTROL;
   }
-  else if (MAX_RPM <= status.rpm) {
+  else if (command.mode == 0 && MAX_RPM <= status.rpm) {
     return Phase::STOP;
   }
 }

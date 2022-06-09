@@ -1,6 +1,3 @@
-/*
-  BrushlessSignal.cpp - Library for reading brushless signal.
-*/
 
 #ifndef BRUSHLESS_SIGNAL_H
 #define BRUSHLESS_SIGNAL_H
@@ -8,31 +5,38 @@
 #include "Arduino.h"
 
 #include <arduinoFFT.h>
-#include "Data.h"
 #include "Brushless.h"
 #include "Optocoupler.h"
+#include "Data.h"
+
+#define SAMPLES 128
 
 class BrushlessSignal {
   public:
-    static const int SAMPLES = 128;
-    static const int SAMPLE_RATE = 300;
-    static constexpr float SAMPLE_PERIOD = 1 / SAMPLE_RATE;
-    static constexpr float OFFSET = 1.5;
-    static const int HIGH_PASS_FILTER = 5;
-    static const int SCALE = 1;
+    // FFT PUBLIC VARIABLES
+    static constexpr int SAMPLE_RATE = 300; // sample rate = 100x3
+    static constexpr float SAMPLE_PERIOD = 1e6 / SAMPLE_RATE; // sample time in microsecond
+    int scale = 1;
 
+    // ANALOG READ PUBLIC VARIABLES
     double real_voltage[SAMPLES];
     double imaginary_voltage[SAMPLES];
     double peak_voltage = 0;
     double rms_voltage = 0;
 
+    // FUNCTIONS
     BrushlessSignal();
-    void attach(uint8_t analog_pin, uint8_t opt_pin1, uint8_t opt_pin2);
+    void attach(uint8_t _analog_pin, uint8_t _opt1_pin, uint8_t _opt2_pin);
     void run();
-    float readFrequency();
-    float readPower(Status const &status);
+    double readFrequency();
+    double readPower(Status const &status);
 
   private:
+    // FFT PRIVATE VARIABLES
+    const double HIGH_PASS_FILTER = 5;
+    // ANALOG READ PRIVATE VARIABLES
+    const double VOffset = 1.5; // default value offset
+
     Brushless brushless;
     Optocoupler optocoupler1, optocoupler2;
     arduinoFFT FFT;

@@ -22,8 +22,8 @@ class LoadControl: public Load {
 
   private:
     void start(Status const &status);
-    void pid(Status const &status);
     void stop(Status const &status);
+    void pid(Status const &status);
 };
 
 #endif

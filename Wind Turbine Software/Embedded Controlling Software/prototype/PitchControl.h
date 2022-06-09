@@ -24,8 +24,8 @@ class PitchControl: public Pitch {
   private:
     void init(Status const &status);
     void start(Status const &status);
-    void pid(Status const &status);
     void stop(Status const &status);
+    void pid(Status const &status);
 };
 
 #endif

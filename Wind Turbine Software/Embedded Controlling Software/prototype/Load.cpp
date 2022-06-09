@@ -18,7 +18,6 @@ Load::Load() {
 */
 void Load::attach(uint8_t pin1, uint8_t pin2, uint8_t pin3, uint8_t pin4) {
   this->relay.attach(pin1, pin2, pin3, pin4);
-  
   write(this->load);
 }
 

@@ -56,16 +56,16 @@ void LoadControl::start(Status const &status) {
   write(round(this->load + ((status.rpm - status.prev_rpm) / (toMicros(CONTROL_TIME) * 1e-6)) * D1_GAIN));
 }
 
-/** Writes load applying PD control based on status
-   @param status status of turbine
-*/
-void LoadControl::pid(Status const &status) {
-  write(round(this->load - (Control::OPT_RPM - status.rpm) * P_GAIN + ((status.rpm - status.prev_rpm) / (toMicros(CONTROL_TIME) * 1e-6)) * D2_GAIN));
-}
-
 /** Writes load to MAX_LOAD to slow as much as possible revolutions
    @param status status of turbine
 */
 void LoadControl::stop(Status const &status) {
   write(Load::MAX_LOAD);
+}
+
+/** Writes load applying PD control based on status
+   @param status status of turbine
+*/
+void LoadControl::pid(Status const &status) {
+  write(round(this->load - (Control::OPT_RPM - status.rpm) * P_GAIN + ((status.rpm - status.prev_rpm) / (toMicros(CONTROL_TIME) * 1e-6)) * D2_GAIN)); // PD control
 }

@@ -9,18 +9,13 @@
 
 #include <WiFi.h>
 #include <ArduinoJson.h>
-
 #include "credentials.h"
-
-
 
 #define NUM_COMMAND_MESSAGES 1
 #define NUM_STATUS_MESSAGES 20
 
 #define CONTROL_PERIOD 1
 #define CONTROL_TIME 0.5
-
-
 
 enum Phase {INIT, START, PITCH_CONTROL, LOAD_CONTROL, STOP};
 enum Mode {AUTO, MANUAL};
@@ -48,8 +43,6 @@ struct Command {
   int load = 0;
   int stop = 0;
 };
-
-
 
 static unsigned long getTime() {
   time_t now;

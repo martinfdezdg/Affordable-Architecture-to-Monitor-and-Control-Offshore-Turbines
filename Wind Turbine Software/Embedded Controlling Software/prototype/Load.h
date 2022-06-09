@@ -7,9 +7,9 @@
 
 #include "Arduino.h"
 
+#include "Relay.h"
 #include "Data.h"
 #include "Control.h"
-#include "Relay.h"
 
 class Load {
   public:
@@ -18,8 +18,8 @@ class Load {
 
     Load();
     void attach(uint8_t pin1, uint8_t pin2, uint8_t pin3, uint8_t pin4);
-    virtual void run(Command const &command, Status const &status) = 0;
     void write(int load);
+    virtual void run(Command const &command, Status const &status) = 0;
     int read();
     float readResistance();
 

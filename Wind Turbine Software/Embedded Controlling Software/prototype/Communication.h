@@ -25,8 +25,8 @@ class Communication {
     Communication();
     void setupWiFi();
     void setupThingSpeak();
-    void writeThingSpeak(Status const status_array[]);
     Command readThingSpeak();
+    void writeThingSpeak(Status const status_array[]);
     void setupScreen();
     void writeScreen(Command const& command, Status const &status);
 

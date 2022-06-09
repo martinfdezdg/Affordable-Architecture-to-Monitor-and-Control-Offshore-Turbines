@@ -31,8 +31,8 @@ class Turbine {
     Turbine();
     void setup();
     void run();
-    void write(Command const &command);
     Status read();
+    void write(Command const &command);
 
   private:
     Status status;
@@ -40,7 +40,7 @@ class Turbine {
     PitchControl pitch;
     LoadControl load;
     BrushlessSignal brushless;
-    ImuSignal imu;
+    //ImuSignal imu;
 };
 
 #endif

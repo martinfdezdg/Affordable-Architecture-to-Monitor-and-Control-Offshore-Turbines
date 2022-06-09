@@ -25,13 +25,13 @@ void controlProcess(void* parameters) {
   for (;;) {
     if (uxQueueMessagesWaiting(commandQueue) > 0) {
       xQueueReceive(commandQueue, &command, 0);
-      turbine.write(command); // < 0ms
+      turbine.write(command); // < 0 ms
     }
 
-    turbine.run(); // aprox 450ms
+    turbine.run(); // 450ms aprox.
 
     if (uxQueueSpacesAvailable(statusQueue) > 0) {
-      status = turbine.read(); // < 0ms
+      status = turbine.read(); // < 0 ms
       xQueueSend(statusQueue, &status, 0);
     }
     else {
@@ -60,14 +60,14 @@ void communicationProcess(void* parameters) {
   for (;;) {
     for (int i = 0; i < NUM_STATUS_MESSAGES; ++i) {
       xQueueReceive(statusQueue, &status_array[i], portMAX_DELAY);
-
+      
       // Screen communication refresh rate limited to CONTROL_PERIOD seconds
       if (micros() - loop_time >= toMicros(CONTROL_PERIOD)) {
         loop_time = micros();
 
         communication.writeScreen(command, status_array[i]);
 
-        command = communication.readThingSpeak(); // aprox 600ms
+        command = communication.readThingSpeak(); // 600ms aprox.
         xQueueOverwrite(commandQueue, &command);
       }
     }

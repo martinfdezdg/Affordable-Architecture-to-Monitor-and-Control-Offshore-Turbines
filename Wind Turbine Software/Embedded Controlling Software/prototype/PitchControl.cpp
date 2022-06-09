@@ -62,6 +62,13 @@ void PitchControl::start(Status const &status) {
   write(ALPHA * this->pitch + (1 - ALPHA) * Pitch::OPT_PITCH);
 }
 
+/** Writes pitch to MAX_PITCH to slow as much as possible revolutions
+   @param status status of turbine
+*/
+void PitchControl::stop(Status const &status) {
+  write(Pitch::MIN_PITCH);
+}
+
 /** Writes pitch applying PID control based on status
    @param status status of turbine
 */
@@ -70,11 +77,4 @@ void PitchControl::pid(Status const &status) {
   if (valid_pitch >= Pitch::OPT_PITCH) {
     write(valid_pitch);
   }
-}
-
-/** Writes pitch to MAX_PITCH to slow as much as possible revolutions
-   @param status status of turbine
-*/
-void PitchControl::stop(Status const &status) {
-  write(Pitch::MIN_PITCH);
 }

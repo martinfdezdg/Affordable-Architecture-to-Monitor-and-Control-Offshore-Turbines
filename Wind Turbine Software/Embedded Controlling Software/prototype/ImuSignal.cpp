@@ -11,7 +11,7 @@ ImuSignal::ImuSignal() { }
 /** Attaches IMU to given pin and initializes it
    @param address_pin IMU_PIN
 */
-void ImuSignal::attach(int address_pin) {
+void ImuSignal::attach(int adds_pin) {
   imu.initialize();
 }
 
@@ -25,6 +25,8 @@ Point ImuSignal::readAcceleration() {
   acc.x = ax;
   acc.y = ay;
   acc.z = az;
+  Serial.print("ACELERACION X ");
+  Serial.println(acc.x);
   return acc;
 }
 

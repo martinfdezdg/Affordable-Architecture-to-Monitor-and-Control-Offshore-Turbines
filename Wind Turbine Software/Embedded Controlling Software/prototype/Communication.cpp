@@ -3,7 +3,6 @@
 */
 
 #include "Arduino.h"
-
 #include "Communication.h"
 
 Communication::Communication()
@@ -13,12 +12,14 @@ Communication::Communication()
 /** Sets WiFi connection
 */
 void Communication::setupWiFi() {
+  Serial.print("\nConnecting to ");
+  Serial.println(WIFI_SSID);
   WiFi.begin(WIFI_SSID, WIFI_PASS);
   while (WiFi.status() != WL_CONNECTED) {
     vTaskDelay(500);
   }
-
-  configTime(0, 0, NTP_SERVER);
+  Serial.println("\nWiFi connected");
+  configTime(0, 0, NTP_SERVER); // IMPORTANT
 }
 
 // THINGSPEAK
@@ -36,11 +37,11 @@ void Communication::setupThingSpeak() {
 void Communication::writeThingSpeak(Status const status_array[]) {
   state_http_client.addHeader("Content-Type", "application/json");
   state_http_client.POST(stateToJson(STATE_WRITE_APIKEY, status_array));
-  Serial.print("state_http response: ");
+  Serial.print("HTTP__status Response: ");
   Serial.println(state_http_client.getString());
   acc_rot_http_client.addHeader("Content-Type", "application/json");
   acc_rot_http_client.POST(accRotToJson(ACC_ROT_WRITE_APIKEY, status_array));
-  Serial.print("acc_rot_http response: ");
+  Serial.print("HTTP_acc_rot Response: ");
   Serial.println(acc_rot_http_client.getString());
 }
 
@@ -57,7 +58,7 @@ Command Communication::readThingSpeak() {
 }
 
 // SCREEN
-/** Sets screen connection
+/** Sets Screen connection
 */
 void Communication::setupScreen() {
   this->screen.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
@@ -85,7 +86,13 @@ void Communication::setupScreen() {
 void Communication::writeScreen(Command const &command, Status const &status) {
   this->screen.clearDisplay();
 
-  if (status.phase != Phase::STOP || (status.phase == Phase::STOP && status.time % 2 == 0)) {
+  if (status.phase == Phase::STOP && status.time % 2 == 0) {
+    this->screen.setTextSize(1);
+    this->screen.setTextColor(SSD1306_WHITE);
+    this->screen.setCursor(0, 0);
+    this->screen.println("EMERGENCY STOP");
+  }
+  else {
     this->screen.setTextSize(1);
     this->screen.setTextColor(SSD1306_WHITE);
     this->screen.setCursor(0, 0);
@@ -94,12 +101,6 @@ void Communication::writeScreen(Command const &command, Status const &status) {
     this->screen.setCursor(60, 0);
     this->screen.print("Load: ");
     this->screen.println(status.load);
-  }
-  else {
-    this->screen.setTextSize(1);
-    this->screen.setTextColor(SSD1306_WHITE);
-    this->screen.setCursor(0, 0);
-    this->screen.println("EMERGENCY STOP");
   }
 
   this->screen.setTextColor(SSD1306_WHITE);

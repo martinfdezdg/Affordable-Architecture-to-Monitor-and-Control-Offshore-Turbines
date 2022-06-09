@@ -19,8 +19,8 @@ class Pitch {
 
     Pitch();
     void attach(uint8_t pin);
-    virtual void run(Command const &command, Status const &status) = 0;
     void write(float pitch);
+    virtual void run(Command const &command, Status const &status) = 0;
     float read();
 
   private:

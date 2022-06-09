@@ -15,7 +15,6 @@ Pitch::Pitch() {
 */
 void Pitch::attach(uint8_t pin) {
   this->servo.attach(pin);
-  
   write(this->pitch);
 }
 

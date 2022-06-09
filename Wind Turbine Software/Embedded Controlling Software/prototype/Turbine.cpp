@@ -14,41 +14,45 @@ void Turbine::setup() {
   this->pitch.attach(PITCH_PIN);
   this->load.attach(RELAY_PIN1, RELAY_PIN2, RELAY_PIN3, RELAY_PIN4);
   this->brushless.attach(BRUSHLESS_PIN, OPT_PIN1, OPT_PIN2);
-  this->imu.attach(IMU_PIN);
+  //this->imu.attach(IMU_PIN);
 }
 
 /** Runs every turbine elements
 */
 void Turbine::run() {
   this->brushless.run();
-  Serial.print("Command: ");
-  Serial.println((int) this->command.mode);
+  //this->imu.run();
+  //Serial.print("Command: ");
+  //Serial.println((int) this->command.mode);
   this->status.time = getTime();
-  Serial.println(this->status.time);
+  //Serial.println(this->status.time);
   this->status.rpm = this->brushless.readFrequency() * 10;
-  Serial.print("RPM: ");
-  Serial.println(this->status.rpm);
-  Serial.print("Prev_RPM: ");
-  Serial.println(this->status.prev_rpm);
+  //if (this->status.rpm - this->status.prev_rpm >= 500 && this->status.prev_rpm == 0) {
+  //  this->status.rpm = 0;
+  //}
+  //Serial.print("RPM: ");
+  //Serial.println(this->status.rpm);
+  //Serial.print("Prev_RPM: ");
+  //Serial.println(this->status.prev_rpm);
   this->pitch.run(this->command, this->status);
   this->status.pitch = this->pitch.read();
-  Serial.print("Pitch: ");
-  Serial.println(this->status.pitch);
+  //Serial.print("Pitch: ");
+  //Serial.println(this->status.pitch);
   this->load.run(this->command, this->status);
   this->status.load = this->load.read();
-  Serial.print("Load: ");
-  Serial.println(this->status.load);
+  //Serial.print("Load: ");
+  //Serial.println(this->status.load);
   this->status.resistance = this->load.readResistance();
-  Serial.print("Resistance: ");
-  Serial.println(this->status.resistance);
+  //Serial.print("Resistance: ");
+  //Serial.println(this->status.resistance);
   this->status.power = this->brushless.readPower(this->status);
-  Serial.print("Power: ");
-  Serial.println(this->status.power);
-  this->status.acc = this->imu.readAcceleration();
-  this->status.rot = this->imu.readRotation();
+  //Serial.print("Power: ");
+  //Serial.println(this->status.power);
+  //this->status.acc = this->imu.readAcceleration();
+  //this->status.rot = this->imu.readRotation();
   this->status.phase = Control::nextPhase(this->command, this->status);
-  Serial.print("Phase: ");
-  Serial.println((int) this->status.phase);
+  //Serial.print("Phase: ");
+  //Serial.println((int) this->status.phase);
   this->status.prev_rpm = this->status.rpm;
 }
 
