@@ -95,7 +95,7 @@ void setup() {
   xTaskCreatePinnedToCore(
     communicationProcess, // Function name
     "Communication Process", // Task name
-    4000, // Stack size
+    12000, // Stack size
     NULL, // Parameters
     1, // Priority (0-100)
     &communicationProcessHandle, // Task handler

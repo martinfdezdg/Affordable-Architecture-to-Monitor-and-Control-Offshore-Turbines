@@ -11,10 +11,10 @@ BrushlessSignal::BrushlessSignal() {}
 /** Attaches brushless to given pin and initializes it
    @param analog_pin STEPPER_PIN
 */
-void BrushlessSignal::attach(uint8_t _analog_pin, uint8_t _opt1_pin, uint8_t _opt2_pin) {
-  brushless.attach(_analog_pin);
-  optocoupler1.attach(_opt1_pin);
-  optocoupler2.attach(_opt2_pin);
+void BrushlessSignal::attach(uint8_t analog_pin, uint8_t opt1_pin, uint8_t opt2_pin) {
+  brushless.attach(analog_pin);
+  optocoupler1.attach(opt1_pin);
+  optocoupler2.attach(opt2_pin);
   optocoupler1.write(LOW);
   optocoupler2.write(HIGH);
 

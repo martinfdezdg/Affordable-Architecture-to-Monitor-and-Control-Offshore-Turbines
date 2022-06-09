@@ -5,8 +5,8 @@
 //#define WIFI_SSID "Android_Giordy"
 //#define WIFI_PASS "mobile98"
 
-//#define WIFI_SSID "iPhone de Martín"
-//#define WIFI_PASS "ojdvg0ke5thv1"
+#define WIFI_SSID "iPhone de Martín"
+#define WIFI_PASS "ojdvg0ke5thv1"
 
 //#define WIFI_SSID "Casa"
 //#define WIFI_PASS "6yxjbmiPa"
@@ -14,8 +14,8 @@
 //#define WIFI_SSID "Piso"
 //#define WIFI_PASS "6yxjbmiPa"
 
-#define WIFI_SSID "atc1"
-#define WIFI_PASS "3x3=nueve"
+//#define WIFI_SSID "ATC1"
+//#define WIFI_PASS "3x3=nueve"
 
 
 // Time credentials

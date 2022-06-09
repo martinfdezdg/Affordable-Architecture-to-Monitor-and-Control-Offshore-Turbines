@@ -26,7 +26,7 @@ class BrushlessSignal {
 
     // FUNCTIONS
     BrushlessSignal();
-    void attach(uint8_t _analog_pin, uint8_t _opt1_pin, uint8_t _opt2_pin);
+    void attach(uint8_t analog_pin, uint8_t opt1_pin, uint8_t opt2_pin);
     void run();
     double readFrequency();
     double readPower(Status const &status);

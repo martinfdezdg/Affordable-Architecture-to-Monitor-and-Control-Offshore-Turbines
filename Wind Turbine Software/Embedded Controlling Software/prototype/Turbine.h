@@ -40,7 +40,7 @@ class Turbine {
     PitchControl pitch;
     LoadControl load;
     BrushlessSignal brushless;
-    //ImuSignal imu;
+    ImuSignal imu;
 };
 
 #endif

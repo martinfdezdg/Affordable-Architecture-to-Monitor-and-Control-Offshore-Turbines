@@ -7,6 +7,7 @@
 
 #include "Arduino.h"
 
+#include "Wire.h"
 #include "MPU6050.h"
 #include "Data.h"
 

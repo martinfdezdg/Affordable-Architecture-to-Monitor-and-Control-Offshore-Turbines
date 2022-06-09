@@ -18,7 +18,7 @@ void Communication::setupWiFi() {
   while (WiFi.status() != WL_CONNECTED) {
     vTaskDelay(500);
   }
-  Serial.println("\nWiFi connected");
+  //Serial.println("\nWiFi connected");
   configTime(0, 0, NTP_SERVER); // IMPORTANT
 }
 
@@ -37,12 +37,12 @@ void Communication::setupThingSpeak() {
 void Communication::writeThingSpeak(Status const status_array[]) {
   state_http_client.addHeader("Content-Type", "application/json");
   state_http_client.POST(stateToJson(STATE_WRITE_APIKEY, status_array));
-  Serial.print("HTTP__status Response: ");
-  Serial.println(state_http_client.getString());
+  //Serial.print("HTTP_status Response: ");
+  //Serial.println(state_http_client.getString());
   acc_rot_http_client.addHeader("Content-Type", "application/json");
   acc_rot_http_client.POST(accRotToJson(ACC_ROT_WRITE_APIKEY, status_array));
-  Serial.print("HTTP_acc_rot Response: ");
-  Serial.println(acc_rot_http_client.getString());
+  //Serial.print("HTTP_acc_rot Response: ");
+  //Serial.println(acc_rot_http_client.getString());
 }
 
 /** Reads command of ThingSpeak channel

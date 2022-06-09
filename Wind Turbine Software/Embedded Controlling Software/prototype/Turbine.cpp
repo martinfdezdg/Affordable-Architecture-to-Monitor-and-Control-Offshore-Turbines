@@ -14,14 +14,13 @@ void Turbine::setup() {
   this->pitch.attach(PITCH_PIN);
   this->load.attach(RELAY_PIN1, RELAY_PIN2, RELAY_PIN3, RELAY_PIN4);
   this->brushless.attach(BRUSHLESS_PIN, OPT_PIN1, OPT_PIN2);
-  //this->imu.attach(IMU_PIN);
+  this->imu.attach(IMU_PIN);
 }
 
 /** Runs every turbine elements
 */
 void Turbine::run() {
   this->brushless.run();
-  //this->imu.run();
   //Serial.print("Command: ");
   //Serial.println((int) this->command.mode);
   this->status.time = getTime();
@@ -48,8 +47,8 @@ void Turbine::run() {
   this->status.power = this->brushless.readPower(this->status);
   //Serial.print("Power: ");
   //Serial.println(this->status.power);
-  //this->status.acc = this->imu.readAcceleration();
-  //this->status.rot = this->imu.readRotation();
+  this->status.acc = this->imu.readAcceleration();
+  this->status.rot = this->imu.readRotation();
   this->status.phase = Control::nextPhase(this->command, this->status);
   //Serial.print("Phase: ");
   //Serial.println((int) this->status.phase);
