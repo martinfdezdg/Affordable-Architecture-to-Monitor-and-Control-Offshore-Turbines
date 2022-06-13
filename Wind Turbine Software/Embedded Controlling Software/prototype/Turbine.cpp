@@ -27,9 +27,6 @@ void Turbine::run() {
   this->status.time = getTime();
   //Serial.println(this->status.time);
   this->status.rpm = this->brushless.readFrequency() * 10;
-  //if (this->status.rpm - this->status.prev_rpm >= 500 && this->status.prev_rpm == 0) {
-  //  this->status.rpm = 0;
-  //}
   //Serial.print("RPM: ");
   //Serial.println(this->status.rpm);
   //Serial.print("Prev_RPM: ");
