@@ -14,7 +14,8 @@ void Turbine::setup() {
   this->pitch.attach(PITCH_PIN);
   this->load.attach(RELAY_PIN1, RELAY_PIN2, RELAY_PIN3, RELAY_PIN4);
   this->brushless.attach(BRUSHLESS_PIN, OPT_PIN1, OPT_PIN2);
-  this->imu.attach(IMU_PIN);
+  this->imu.attach(IMU_ADDRESS);
+  this->screen.attach(SCREEN_ADDRESS);
 }
 
 /** Runs every turbine elements
@@ -53,6 +54,7 @@ void Turbine::run() {
   //Serial.print("Phase: ");
   //Serial.println((int) this->status.phase);
   this->status.prev_rpm = this->status.rpm;
+  this->screen.write(this->command, this->status);
 }
 
 /** Reads turbine elements information

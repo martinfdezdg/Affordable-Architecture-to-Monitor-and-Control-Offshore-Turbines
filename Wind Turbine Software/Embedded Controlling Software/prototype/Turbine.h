@@ -12,6 +12,7 @@
 #include "LoadControl.h"
 #include "BrushlessSignal.h"
 #include "ImuSignal.h"
+#include "Screen.h"
 
 #define PITCH_PIN 5
 
@@ -24,7 +25,9 @@
 #define OPT_PIN1 18
 #define OPT_PIN2 19
 
-#define IMU_PIN 0x68
+#define IMU_ADDRESS 0x68
+
+#define SCREEN_ADDRESS 0x3C // See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 
 class Turbine {
   public:
@@ -41,6 +44,7 @@ class Turbine {
     LoadControl load;
     BrushlessSignal brushless;
     ImuSignal imu;
+    Screen screen;
 };
 
 #endif

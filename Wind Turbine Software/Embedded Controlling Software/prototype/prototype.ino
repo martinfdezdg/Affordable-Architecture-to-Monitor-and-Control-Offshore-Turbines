@@ -50,7 +50,6 @@ void communicationProcess(void* parameters) {
   Status status_array[NUM_STATUS_MESSAGES];
   Communication communication;
 
-  communication.setupScreen();
   communication.setupWiFi();
   communication.setupThingSpeak();
   xQueueReset(statusQueue);
@@ -64,8 +63,6 @@ void communicationProcess(void* parameters) {
       // Screen communication refresh rate limited to CONTROL_PERIOD seconds
       if (micros() - loop_time >= toMicros(CONTROL_PERIOD)) {
         loop_time = micros();
-
-        communication.writeScreen(command, status_array[i]);
 
         command = communication.readThingSpeak(); // 600ms aprox.
         xQueueOverwrite(commandQueue, &command);
@@ -95,7 +92,7 @@ void setup() {
   xTaskCreatePinnedToCore(
     communicationProcess, // Function name
     "Communication Process", // Task name
-    12000, // Stack size
+    4000, // Stack size
     NULL, // Parameters
     1, // Priority (0-100)
     &communicationProcessHandle, // Task handler

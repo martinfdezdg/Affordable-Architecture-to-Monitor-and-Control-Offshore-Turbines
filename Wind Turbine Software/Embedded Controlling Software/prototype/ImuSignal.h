@@ -17,7 +17,7 @@ class ImuSignal {
     static constexpr float ROT_SCALE = 250.0 / 32768.0;
 
     ImuSignal();
-    void attach(int address_pin);
+    void attach(int address);
     Point readAcceleration();
     Point readRotation();
 
